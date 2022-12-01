@@ -41,19 +41,6 @@ public class MainActivity extends AppCompatActivity {
         gameManager = new GameManager();
 
         findViews();
-        //https://i.pinimg.com/564x/9e/f8/18/9ef8189405047f8ff3deaa0688aaa063.jpg
-        //https://cdna.artstation.com/p/assets/images/images/005/328/230/large/rosie-mikos-first-harry-potter-forbidden-forest-patronus-rosiemikos.jpg?1490230681
-        //https://wallpaper.dog/large/17155632.jpg
-        //https://wallpaper.dog/large/17155619.jpg
-        //https://c4.wallpaperflare.com/wallpaper/139/821/174/road-trees-landscape-nature-wallpaper-preview.jpg
-        //https://w0.peakpx.com/wallpaper/740/154/HD-wallpaper-dark-forest-trees-foggy-mist-haze-nature-thumbnail.jpg
-        //https://w0.peakpx.com/wallpaper/740/154/HD-wallpaper-dark-forest-trees-foggy-mist-haze-nature-thumbnail.jpg
-        //https://thirdeyetraveller.com/wp-content/uploads/Lacock-Harry-Potter-Filming-Locations-23.jpg //corridors
-        //https://static.wikia.nocookie.net/harrypotter/images/5/53/Third-floor_corridor_-_PAS.png/revision/latest?cb=20201128225240
-        //https://c1.wallpaperflare.com/preview/748/419/757/cathedral-cloisters-harry-potter-church.jpg
-        //https://wallpaperaccess.com/full/541374.jpg
-        //https://images7.alphacoders.com/119/thumb-1920-1192080.jpg
-
 
         Glide
                 .with(MainActivity.this)
