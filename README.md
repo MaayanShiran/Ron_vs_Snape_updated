@@ -21,7 +21,7 @@ __Excercise no.2:__
 #Using ***Google maps API*** - fetching google map<br />
 #Using ***Device's location services*** - for setting the longitude and altitude of the players current location<br />
 #Using ***MediaPlayer*** - used for background music and for crash sound ("where did you come from?") and coin collecting sound ("wicked")<br />
-#Using ***Adapter & RecyclerView*** - for the Top Ten highscores: designed one object and than by the RecyclerView it created 10 duplications of it
+#Using ***Adapter & RecyclerView*** - for the Top Ten highscores: designed one object and than by the RecyclerView creates 10 duplications of it
 
 #Button mode demonstration:<br />
 
