@@ -31,7 +31,7 @@ https://user-images.githubusercontent.com/95546841/209451524-05d584cc-b4aa-49f9-
 
 
 
-#Sensor mode demonstration<br />
+#Sensor mode demonstration:<br />
 
 
 https://user-images.githubusercontent.com/95546841/209451541-8b6a7faa-88e9-47d8-ba18-5a2a4437d7bb.mp4
