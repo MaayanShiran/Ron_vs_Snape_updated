@@ -10,7 +10,7 @@ public class GameTool {
     protected int lastCol;
     protected int imgRcs;
 
-    public GameTool(){
+    public GameTool() {
 
     }
 
@@ -21,7 +21,7 @@ public class GameTool {
         this.currentCol = currentCol;
         this.lastRow = lastRow;
         this.lastCol = lastCol;
-       this.imgRcs = imgRcs;
+        this.imgRcs = imgRcs;
     }
 
 
@@ -34,11 +34,11 @@ public class GameTool {
         this.imgRcs = imgRcs;
     }
 
-    public void getRowDown(){
+    public void getRowDown() {
 
         setLastCol(currentCol);
         setLastRow(currentRow);
-        currentRow +=1;
+        currentRow += 1;
     }
 
     public int getImgRcs() {
@@ -77,4 +77,7 @@ public class GameTool {
         this.currentCol = currentCol;
     }
 
+    public int pointsAdd() {
+        return 0;
+    }
 }
