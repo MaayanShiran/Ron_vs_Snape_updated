@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        android:fitsSystemWindows="true"
+        android:layout_centerVertical="true"
+        >
+
+    </pl.droidsonroids.gif.GifImageView>
+
+
+    <com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout
+        android:id="@+id/particles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="-10dp"
+
+        >
+
+        <Button
+            android:id="@+id/game_BTN_slowMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="game: slow"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+            >
+
+        </Button>
+    </com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout>
+
+
+
+    <com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout
+        android:id="@+id/particles2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="-10dp"
+        android:layout_below="@id/particles"
+        android:layout_marginTop="-20dp"
+
+        >
+
+        <Button
+            android:id="@+id/game_BTN_fastMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" game: fast"
+            android:textSize="30sp"
+            android:layout_below="@id/game_BTN_slowMode"
+            android:layout_centerInParent="true"
+            >
+
+        </Button>
+    </com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout>
+
+    <com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout
+        android:id="@+id/particles3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="-10dp"
+        android:layout_marginTop="-20dp"
+        android:layout_below="@id/particles2"
+
+        >
+
+        <Button
+            android:id="@+id/game_BTN_goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" return"
+            android:textSize="30sp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/game_BTN_fastMode"
+            android:layout_centerInParent="true"
+            >
+
+        </Button>
+    </com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout>
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_paper"
+    tools:context=".TopTen_Panel"
+   >
+
+    <TextView
+        android:id="@+id/topTen_IMG_number"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/meie_script"
+        android:maxLines="2"
+        android:minLines="2"
+        android:text="01"
+        android:textSize="34sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/topTen_IMG_name"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@id/topTen_IMG_number"
+        android:ellipsize="end"
+        android:fontFamily="@font/meie_script"
+        android:maxLines="2"
+        android:minLines="2"
+        android:text="P'S NAME"
+        android:textSize="28sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/topTen_IMG_score"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/topTen_IMG_name"
+        android:fontFamily="@font/meie_script"
+        android:text="00000"
+        android:textSize="34sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aguafina_script</item>
+        <item>@font/alex_brush</item>
+        <item>@font/allura</item>
+        <item>@font/arizonia</item>
+        <item>@font/beth_ellen</item>
+        <item>@font/calligraffitti</item>
+        <item>@font/cedarville_cursive</item>
+        <item>@font/courier_prime</item>
+        <item>@font/dancing_script</item>
+        <item>@font/dr_sugiyama</item>
+        <item>@font/engagement</item>
+        <item>@font/great_vibes</item>
+        <item>@font/herr_von_muellerhoff</item>
+        <item>@font/kristi</item>
+        <item>@font/marck_script</item>
+        <item>@font/meie_script</item>
+        <item>@font/miss_fajardose</item>
+        <item>@font/monsieur_la_doulaise</item>
+        <item>@font/mr_bedfort</item>
+        <item>@font/pinyon_script</item>
+        <item>@font/ruthie</item>
+        <item>@font/shojumaru</item>
+        <item>@font/tangerine_bold</item>
+        <item>@font/waiting_for_the_sunrise</item>
+        <item>@font/yesteryear</item>
+    </array>
+</resources>
