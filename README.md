@@ -10,7 +10,6 @@ __Excercise no.2:__
 #Crash sound<br />
 #Coins on road<br />
 #Distance counter<br />
-#Longer road<br />
 #Menu with 2 options: Button mode or Sensor mode, both with slow/fast choise of speed<br />
 #Tilt back and forth for speed<br />
 
