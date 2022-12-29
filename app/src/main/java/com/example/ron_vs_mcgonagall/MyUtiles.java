@@ -1,13 +1,15 @@
 package com.example.ron_vs_mcgonagall;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class MyUtiles {
-
-
 
     public static void hideSystemUI(Activity activity) {
         // Enables regular immersive mode.
@@ -30,9 +32,29 @@ public class MyUtiles {
 
         // Without - cut out display
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-           activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         }
 
     }
+
+    public static void ToastMsg(Context context, String msg, int len) {
+        Toast toast = Toast.makeText(context, msg, len);
+        View toastView = toast.getView();
+        toast.show();
+    }
+
+    public static void vibrate(Context context) {
+        Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v.vibrate(500);
+        }
+    }
+
 }
+
+

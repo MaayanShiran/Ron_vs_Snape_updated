@@ -117,7 +117,6 @@ public class Menu extends AppCompatActivity {
     }
 
     private void doInBackground(Void... params) {
-
         MyMediaPlayer.getMediaPlayerInstance().playAudioFile(this, R.raw.prologue);
         MyMediaPlayer.getMediaPlayerInstance().setLoop(true);
 

@@ -1,8 +1,5 @@
 package com.example.ron_vs_mcgonagall;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class GameManager {
 
     private BoardGame board;
@@ -11,20 +8,14 @@ public class GameManager {
     private int wrong;
     private final int NUM_GT = ROWS - 1;
     private int score;
-    private ArrayList<TopTenDetails> topTen;
-    private int currentTopTenNum;
     private static GameManager manager;
+    private TopTen_Arr topTen;
 
     public GameManager() {
         board = new BoardGame(ROWS, COLS, NUM_GT);
         wrong = 0;
         score = 0;
-        topTen = new ArrayList<TopTenDetails>();
-        for (int i = 1; i <= 10; i++) {
-            topTen.add(new TopTenDetails().setSerialNoImg(i));
-        }
-
-        currentTopTenNum = 0;
+        topTen = TopTen_Arr.set();
 
     }
 
@@ -35,47 +26,15 @@ public class GameManager {
         return manager;
     }
 
-    public ArrayList<TopTenDetails> getTopTen() {
+    public TopTen_Arr getTopTen() {
         return topTen;
     }
 
     public void addRecord(String name, double lon, double lat, int score) {
 
-        TopTenDetails tTD = new TopTenDetails(name, score, lat, lon);
+        topTen.addRecord(name, score, lat, lon);
 
-        if (currentTopTenNum < 8) {
-            topTen.get(currentTopTenNum).setName(name);
-            topTen.get(currentTopTenNum).setLocation(lat, lon);
-            topTen.get(currentTopTenNum).setScore(score);
-            topTen.get(currentTopTenNum).setSerialNoImg(currentTopTenNum);
 
-            currentTopTenNum++;
-
-        } else {//there are aleady 10 Top-Ten, if the current's score is bigger than the last's
-            if (score > topTen.get(9).getScore()) {
-                topTen.get(9).setName(name);
-                topTen.get(9).setLocation(lat, lon);
-                topTen.get(9).setScore(score);
-            }
-
-        }
-        Collections.sort(topTen, new CompTTD());
-        sortArrTopTen();
-
-    }
-
-    public void sortArrTopTen() {
-
-        for (int i = 0; i < topTen.size(); i++) {
-
-            topTen.get(i).setSerialNoImg(i + 1);
-
-        }
-
-    }
-
-    public int getCurrentTopTenNum() {
-        return currentTopTenNum;
     }
 
     public int getNUM_GT() {
@@ -143,8 +102,7 @@ public class GameManager {
         return ROWS;
     }
 
+    public void gameLogic() {
 
-    public void setCurrentTopTenNum(int numItems) {
-        currentTopTenNum = numItems;
     }
 }

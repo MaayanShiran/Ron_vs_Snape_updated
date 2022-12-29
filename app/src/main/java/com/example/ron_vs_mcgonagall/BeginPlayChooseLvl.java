@@ -13,7 +13,6 @@ import com.appgozar.fadeoutparticle.FadeOutParticleFrameLayout;
 public class BeginPlayChooseLvl extends AppCompatActivity {
 
     public static final String KEY_MODE = "";//which mode was selected:sensor or button
-
     private Button modeFast;
     private Button modeSlow;
     private Button returnBack;

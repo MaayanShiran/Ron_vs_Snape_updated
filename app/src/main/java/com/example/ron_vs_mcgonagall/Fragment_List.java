@@ -1,18 +1,23 @@
 package com.example.ron_vs_mcgonagall;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class Fragment_List extends Fragment implements CallBack_OnItemClickListener {
 
@@ -20,6 +25,8 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
     private ImageView highscore_title;
     private RecyclerView list_topten;
     public static final String SHARED_PREFS = "sharedPrefs";
+    private static final String SP_KEY_TOPTEN = "SP_KEY_PLAYLIST";
+
     public static final String TEXT = "text";
     private int index;
     CallBack_OnItemClickListener listener;
@@ -49,7 +56,7 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
 
     private void initViews() {
 
-        Adapter_TopTen adapter_topTen = new Adapter_TopTen(this.getContext(), gameManager.getTopTen(), this::onItemClick);
+        Adapter_TopTen adapter_topTen = new Adapter_TopTen(this.getContext(), gameManager.getTopTen().getTopTen(), this::onItemClick);
         list_topten.setLayoutManager(new LinearLayoutManager(this.getContext()));
         list_topten.setAdapter(adapter_topTen);
         list_topten.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
@@ -57,7 +64,7 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
                 if (callBack_topTenProtocol != null) {
 
-                    callBack_topTenProtocol.topTenDetails(gameManager.getTopTen().get(index));
+                    callBack_topTenProtocol.topTenDetails(gameManager.getTopTen().getTopTen().get(index));
                 }
                 return false;
             }
@@ -66,7 +73,7 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
             public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
                 if (callBack_topTenProtocol != null) {
 
-                    callBack_topTenProtocol.topTenDetails(gameManager.getTopTen().get(rv.getChildAdapterPosition(getView())));
+                    callBack_topTenProtocol.topTenDetails(gameManager.getTopTen().getTopTen().get(rv.getChildAdapterPosition(getView())));
                 }
             }
 
@@ -76,21 +83,13 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
             }
         });
 
-
     }
 
     public void transferDetails() {
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-       int numberItems = sharedPreferences.getInt("numberItems", gameManager.getCurrentTopTenNum());
+        MySharedPreferences.init(getContext());
 
-        for (int i = 0; i < 10; i++) {
-            gameManager.getTopTen().get(i).setSerialNoImg(i + 1);
-            gameManager.getTopTen().get(i).setName(sharedPreferences.getString("name" + i, gameManager.getTopTen().get(i).getName()));
-            gameManager.getTopTen().get(i).setScore(sharedPreferences.getInt("score" + i, gameManager.getTopTen().get(i).getScore()));
-            gameManager.getTopTen().get(i).setLocation(Double.parseDouble(sharedPreferences.getString("lat" + i, gameManager.getTopTen().get(i).getLatitude())), Double.parseDouble(sharedPreferences.getString("lon" + i, gameManager.getTopTen().get(i).getLongitude())));
-
-        }
+        setListFromJson();
 
     }
 
@@ -104,5 +103,17 @@ public class Fragment_List extends Fragment implements CallBack_OnItemClickListe
     @Override
     public void onItemClick(int position) {
         index = position;
+    }
+
+    public void setListFromJson() {
+        ArrayList<TopTenDetails> topten;
+        String serializedObject = MySharedPreferences.getInstance().getString(SP_KEY_TOPTEN, null);
+        if (serializedObject != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<TopTenDetails>>() {
+            }.getType();
+            topten = gson.fromJson(serializedObject, type);
+            TopTen_Arr.setTopTens(topten);
+        }
     }
 }

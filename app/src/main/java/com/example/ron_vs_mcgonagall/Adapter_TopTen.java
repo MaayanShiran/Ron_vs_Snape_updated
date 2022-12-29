@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class Adapter_TopTen extends RecyclerView.Adapter<Adapter_TopTen.TopTenViewHolder> {
@@ -42,10 +41,6 @@ public class Adapter_TopTen extends RecyclerView.Adapter<Adapter_TopTen.TopTenVi
         return myTopTenViewHolder;
     }
 
-    public TopTenViewHolder getMyTopTenViewHolder() {
-        return myTopTenViewHolder;
-    }
-
     @Override
     public void onBindViewHolder(final TopTenViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -55,11 +50,6 @@ public class Adapter_TopTen extends RecyclerView.Adapter<Adapter_TopTen.TopTenVi
         holder.name.setText(topTenDetails.getName());
         holder.serialNo_img.setText("" + topTenDetails.getImage());
 
-    }
-
-    public int getClickedPosition() {
-        myTopTenViewHolder.getCurrentPosionClicked();
-        return clickedPosition;
     }
 
     class TopTenViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
@@ -78,16 +68,6 @@ public class Adapter_TopTen extends RecyclerView.Adapter<Adapter_TopTen.TopTenVi
             score = itemView.findViewById(R.id.topTen_IMG_score);
             this.onItemClickListener = onItemClickListener;
 
-        }
-
-
-        public int getCurrentPosionClicked() {
-            return clickedPosition;
-        }
-
-        public void onClick(View view) {
-            clickedPosition = getAdapterPosition();
-            onItemClickListener.onItemClick(getAdapterPosition());
         }
 
         @Override

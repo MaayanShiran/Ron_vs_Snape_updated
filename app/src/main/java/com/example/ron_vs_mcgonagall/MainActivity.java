@@ -2,7 +2,9 @@ package com.example.ron_vs_mcgonagall;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import com.bumptech.glide.Glide;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -10,17 +12,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,11 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[] playerLocation;
     private ShapeableImageView[] gameToolsLocation;
     private ShapeableImageView[] hearts;
-    private Timer timer = new Timer();
     private AppCompatImageView back_IMG_background;
     private TextView scoreLable;
-    private int currentSpeed = 1;
-    private int lastSpeed = 0;
+    private int currentSpeed = 1;//
+    private int lastSpeed = 0;//
 
     GameManager gameManager;
 
@@ -54,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gameManager = new GameManager();
+
+        MySharedPreferences.init(this);
 
         findViews();
 
@@ -99,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void findViews() {
 
         back_IMG_background = findViewById(R.id.back_IMG_background);
-
         scoreLable = findViewById(R.id.LBL_score);
-
         moveLeft = findViewById(R.id.game_BTN_moveLeft);
         moveRight = findViewById(R.id.game_BTN_moveRight);
 
@@ -147,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (level.equals("fast")) {
-            DELAY = 400;//was 600
+            DELAY = 400;
         } else if (level.equals("slow")) {
             DELAY = 1200;
         }
@@ -174,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-
 
         moveRight.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,13 +201,11 @@ public class MainActivity extends AppCompatActivity {
         public void onSensorChanged(SensorEvent sensorEvent) {
 
             float a = sensorEvent.values[1];
-            //tilt backwards -> more and more negative
-            //tilt forwards -> more and more positive
+            //tilt backwards -> more and more negative, tilt forwards -> more and more positive
             if (System.currentTimeMillis() - timeStamp2 > 400) {//to make the sensor mode less sensitive
                 timeStamp2 = System.currentTimeMillis();
 
                 currentSpeed = (int) a;
-
 
                 if (currentSpeed <= -50) {
                     DELAY = 1200;
@@ -276,15 +271,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void removeAllCurrentGameToolView() {
-
-        for (int i = 0; i < gameManager.getBoard().getNumberGameTools(); i++) {
-            int currentCol = gameManager.getBoard().getGameTools()[i].getCurrentCol();
-            int currentRow = gameManager.getBoard().getGameTools()[i].getCurrentRow();
-            gameToolsLocation[currentRow * gameManager.getCOLS() + currentCol].setVisibility(View.INVISIBLE);
-        }
-    }
-
     private void removeCurrentGameToolView(GameTool type) {
         int currentCol = type.getCurrentCol();
         int currentRow = type.getCurrentRow();
@@ -293,7 +279,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void removeAllLastGameToolView() {
-
         for (int i = 0; i < gameManager.getBoard().getNumberGameTools(); i++) {
             int lastCol = gameManager.getBoard().getGameTools()[i].getLastCol();
             int lastRow = gameManager.getBoard().getGameTools()[i].getLastRow();
@@ -317,18 +302,6 @@ public class MainActivity extends AppCompatActivity {
         return gameManager.moveBySensor(position);
     }
 
-    private void vibrate() {
-        Vibrator v = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-            //deprecated in API 26
-            v.vibrate(500);
-        }
-
-    }
-
     final Handler handler = new Handler();
     Runnable runnable = new Runnable() {
         public void run() {
@@ -345,20 +318,19 @@ public class MainActivity extends AppCompatActivity {
                 } else if (gameTool[i].getCurrentRow() == gameManager.getBoard().getRows() - 1) {
                     if (gameTool[i].getCurrentCol() == gameManager.getBoard().getPlayerCurrentCol()) {
                         if (gameTool[i].id == 2) {//obs
-                            vibrate();
-                            toastMsg();
+                            MyUtiles.vibrate(getApplicationContext());
+                            MyUtiles.ToastMsg(MainActivity.this, "OUCH", Toast.LENGTH_SHORT);
                             removeHeart();
                             MyMediaPlayer.getMediaPlayerInstance().playAudioFile(MainActivity.this, R.raw.where_did_you_come_from);
                         } else if (gameTool[i].id == 3) {//coin
-                            //add 30 points - bonus
-                            gameManager.updateScore(gameTool[i].pointsAdd());
+                            gameManager.updateScore(gameTool[i].pointsAdd());//add 30 points - bonus
                             updateScoreView();
                             MyMediaPlayer.getMediaPlayerInstance().playAudioFile(MainActivity.this, R.raw.wicked);
 
                         }
 
                     }
-                    gameManager.updateScore(10);
+                    gameManager.updateScore(10);//if not collecting a coin nor hitting an obs -> gives you 10 points
                     updateScoreView();
                     removeCurrentGameToolView(gameTool[i]);
                     gameManager.getBoard().generateRandomGameTool(i);
@@ -388,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
             gameManager.increasWrong();
 
         if (gameManager.getWrong() == 3) {
-            //insert record to top ten
 
             Intent intent = new Intent(this, InsertDetails.class);
             intent.putExtra(InsertDetails.KEY_SCORE, "" + gameManager.getScore());
@@ -398,17 +369,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-
         for (int i = 0; i < gameManager.getWrong(); i++) {
             hearts[i].setVisibility(View.INVISIBLE);
         }
-
     }
-
-    private void toastMsg() {
-        Toast toast = Toast.makeText(MainActivity.this, "OUCH", Toast.LENGTH_SHORT);
-        View toastView = toast.getView();
-        toast.show();
-    }
-
 }

@@ -37,16 +37,15 @@ public class MyMediaPlayer {
     }
 
     public void setLoop(boolean b) {
-            mediaPlayer.setLooping(b);
+        mediaPlayer.setLooping(b);
     }
 
-    public void pausePlayer(){
+    public void pausePlayer() {
         mediaPlayer.pause();
         whenPaused = mediaPlayer.getCurrentPosition();
     }
 
-    public void resumePlayer(int audio, Context context){
-
+    public void resumePlayer(int audio, Context context) {
         mediaPlayer = MediaPlayer.create(context, audio);
         mediaPlayer.seekTo(whenPaused);
         mediaPlayer.start();

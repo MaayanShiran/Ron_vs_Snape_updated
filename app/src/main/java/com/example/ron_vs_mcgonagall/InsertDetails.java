@@ -4,21 +4,27 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 public class InsertDetails extends AppCompatActivity {
     public static final String KEY_SCORE = "KEY_SCORE";
-    public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
-
+    private static final String SP_KEY_TOPTEN = "SP_KEY_PLAYLIST";
 
     private EditText setName;
     private String score;
@@ -57,33 +63,18 @@ public class InsertDetails extends AppCompatActivity {
                         {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
 
                 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
                 lat = (float) location.getLatitude();
                 lon = (float) location.getLongitude();
 
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                MySharedPreferences.init(getApplicationContext());
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                int numItems = sharedPreferences.getInt("numberItems", gameManager.getCurrentTopTenNum());
-
-                gameManager.setCurrentTopTenNum(numItems);
+                setListFromJson();
                 gameManager.addRecord(name, lon, lat, Integer.parseInt(score));//add a new record
 
-
-                numItems++;
-                editor.putInt("numberItems", numItems);
-
-                for (int i = 0; i < 10; i++) {
-
-                    editor.putString("name" + i, gameManager.getTopTen().get(i).getName());
-                    editor.putInt("score" + i, gameManager.getTopTen().get(i).getScore());
-                    editor.putString("lat" + i, gameManager.getTopTen().get(i).getLatitude().toString());
-                    editor.putString("lon" + i, gameManager.getTopTen().get(i).getLongitude().toString());
-
-                }
-
-                editor.commit();
+                storeListToJson();
 
                 finish();
             }
@@ -95,5 +86,23 @@ public class InsertDetails extends AppCompatActivity {
         submit = findViewById(R.id.game_BTN_submitName);
     }
 
+    public void setListFromJson() {
+        ArrayList<TopTenDetails> topten;
+        String serializedObject = MySharedPreferences.getInstance().getString(SP_KEY_TOPTEN, null);
+        if (serializedObject != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<TopTenDetails>>() {
+            }.getType();
+            topten = gson.fromJson(serializedObject, type);
+            TopTen_Arr.setTopTens(topten);
+        }
+    }
+
+    public void storeListToJson() {
+        Gson gson = new Gson();
+        String topten = gson.toJson(gameManager.getTopTen().getTopTen());
+        MySharedPreferences.getInstance().putString(SP_KEY_TOPTEN, topten);//put jason string in SP
+
+    }
 
 }
