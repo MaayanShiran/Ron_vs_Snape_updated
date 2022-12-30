@@ -24,6 +24,7 @@ __Excercise no.2:__
 * Using ***Adapter & RecyclerView*** - for the Top Ten highscores: designed one object and than by the RecyclerView creates 10 duplications of it
 
 ###### HIGHSCORES PAGE:
+<img src="https://user-images.githubusercontent.com/95546841/210109196-fac59593-f649-464c-854c-6e4c4c8da864.jpeg" width="600">
 ![HIGHSCORES_Page](https://user-images.githubusercontent.com/95546841/210109196-fac59593-f649-464c-854c-6e4c4c8da864.jpeg =250x250)
 
 
