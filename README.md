@@ -10,7 +10,7 @@ __Excercise no.2:__
 #Crash sound<br />
 #Coins on road<br />
 #Distance counter<br />
-#Menu with 2 options: Button mode or Sensor mode, both with slow/fast choise of speed<br />
+#Menu with 2 options: Button mode or Sensor mode, both with slow/fast choice of speed<br />
 #Tilt back and forth for speed<br />
 
 
@@ -24,14 +24,13 @@ __Excercise no.2:__
 #Using ***Adapter & RecyclerView*** - for the Top Ten highscores: designed one object and than by the RecyclerView creates 10 duplications of it
 
 #Button mode demonstration:<br />
+*cutted out the unrelevent middle
 
-
-https://user-images.githubusercontent.com/95546841/209451524-05d584cc-b4aa-49f9-8834-0e9fb875820c.mp4
-
+https://user-images.githubusercontent.com/95546841/210108926-96c833fb-aa87-464b-a058-8c9d8b9f739b.mp4
 
 
 #Sensor mode demonstration:<br />
+*cutted out the unrelevent middle
 
-
-https://user-images.githubusercontent.com/95546841/209451541-8b6a7faa-88e9-47d8-ba18-5a2a4437d7bb.mp4
+https://user-images.githubusercontent.com/95546841/210108814-a400b270-fc89-4cbd-87bc-19d7c5b633f6.mp4
 
