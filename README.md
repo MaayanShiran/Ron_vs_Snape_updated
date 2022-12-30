@@ -27,13 +27,13 @@ __Excercise no.2:__
 <img src="https://user-images.githubusercontent.com/95546841/210109196-fac59593-f649-464c-854c-6e4c4c8da864.jpeg" width="300">
 
 
-##### Button mode demonstration:<br />
+##### BUTTON MODE DEMONSTRATION:<br />
 *cutted out the unrelevent middle
 
 https://user-images.githubusercontent.com/95546841/210108926-96c833fb-aa87-464b-a058-8c9d8b9f739b.mp4
 
 
-##### Sensor mode demonstration:<br />
+##### SENSOR MODE DEMONSTRATION:<br />
 *cutted out the unrelevent middle
 
 https://user-images.githubusercontent.com/95546841/210108814-a400b270-fc89-4cbd-87bc-19d7c5b633f6.mp4
