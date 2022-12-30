@@ -30,10 +30,12 @@ __Excercise no.2:__
 ##### BUTTON MODE DEMONSTRATION:<br />
 
 https://user-images.githubusercontent.com/95546841/210108926-96c833fb-aa87-464b-a058-8c9d8b9f739b.mp4
+
 *cutted out the irrelevant middle
 
 ##### SENSOR MODE DEMONSTRATION:<br />
 
 https://user-images.githubusercontent.com/95546841/210108814-a400b270-fc89-4cbd-87bc-19d7c5b633f6.mp4
+
 *cutted out the irrelevant middle
 
