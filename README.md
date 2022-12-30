@@ -23,13 +23,17 @@ __Excercise no.2:__
 #Using ***MediaPlayer*** - used for background music and for crash sound ("where did you come from?") and coin collecting sound ("wicked")<br />
 #Using ***Adapter & RecyclerView*** - for the Top Ten highscores: designed one object and than by the RecyclerView creates 10 duplications of it
 
-#Button mode demonstration:<br />
+# HIGHSCORES PAGE:
+![HIGHSCORES_Page](https://user-images.githubusercontent.com/95546841/210109196-fac59593-f649-464c-854c-6e4c4c8da864.jpeg)
+
+
+# Button mode demonstration:<br />
 *cutted out the unrelevent middle
 
 https://user-images.githubusercontent.com/95546841/210108926-96c833fb-aa87-464b-a058-8c9d8b9f739b.mp4
 
 
-#Sensor mode demonstration:<br />
+# Sensor mode demonstration:<br />
 *cutted out the unrelevent middle
 
 https://user-images.githubusercontent.com/95546841/210108814-a400b270-fc89-4cbd-87bc-19d7c5b633f6.mp4
